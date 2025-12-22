@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="../react.basics.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+    
+   
+
+   
+
+    function Click({currentValue,setValue}){
+        
+        function clicked(){
+            setValue(currentValue+1);
+            console.log('clicked')
+        }
+        
+        return(
+            <>
+              {currentValue == 1 && <button onClick = {clicked}  >clicked {currentValue} time</button>}
+              {currentValue !=1 && <button onClick = {clicked}  >clicked {currentValue} times</button>}
+            </>
+        )
+    }    
+
+    function ResetButton({currentValue,setValue}){
+       function reset(){
+        setValue(0);
+       }        
+       return <button onClick = {reset}  >Reset</button>
+    }
+ 
+
+    function App(){
+        const[currentValue,setValue] =  React.useState(0);
+        return (
+          <>  
+            <Click currentValue={currentValue} setValue={setValue}/>
+            <Click currentValue={currentValue} setValue={setValue}/>
+            <ResetButton currentValue={currentValue} setValue={setValue}/> 
+          </>  
+        )    
+    }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
