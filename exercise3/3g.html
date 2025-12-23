@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+     function InputMessage({initialMessage,setMessage}){
+        function editMessage(event){
+          setMessage(event.target.value);
+        }
+        return (
+            <>
+              <input type="text" placeholder="Enter text here" 
+                size="30" onChange={editMessage} value={initialMessage} />
+            </>
+        )
+     }
+     
+     function ParagraphMessage({initialMessage}){
+        return (
+            <>
+               <p> {initialMessage} </p>
+            </>
+        )
+     }
+
+
+     function Reset({setMessage}){     
+         function reset(){
+            setMessage('');
+         } 
+        return (
+            <>
+              <button onClick={reset}>reset</button>
+            </>
+        )
+     }
+
+     function Example({setMessage}){
+        function setExample(){
+            setMessage('Hi Aadarsha');
+        }
+        return (
+            <>
+              <button onClick={setExample}>Example</button>
+            </>
+        )
+     }
+
+
+     function App(){
+        const [initialMessage,setMessage] = React.useState('');
+        return (
+            <>
+              <InputMessage initialMessage={initialMessage} setMessage = {setMessage} />
+              <Reset setMessage = {setMessage} />
+              <Example setMessage = {setMessage} />
+              <ParagraphMessage initialMessage={initialMessage}/>           
+            </>
+        )
+     }
+  
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
