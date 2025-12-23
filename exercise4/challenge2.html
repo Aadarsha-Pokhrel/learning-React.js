@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+    function ClickCount(){
+    const [currentClickTimes,setClickTimes] = React.useState(0);
+    
+      function clicked(){
+         setClickTimes(prev => prev+1);
+      }
+
+      function reset(){
+         setClickTimes(0);
+      }
+
+      function autoClick(){
+          setInterval(()=>{
+            clicked();
+         },1000);
+      }
+
+        return (
+            <>
+              <button onClick={clicked}>clicked {currentClickTimes} times</button>
+              <button onClick={reset}>Reset</button>
+              <button onClick={autoClick}>auto-click</button>
+            </>
+        )
+    }
+
+    function App(){
+
+        return (
+            <>
+              <ClickCount />
+            </>
+        )
+    }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
