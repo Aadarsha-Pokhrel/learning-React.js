@@ -2,6 +2,31 @@
 <html>
   <head>
     <title>React Basics</title>
+    <style>
+
+      *{
+        margin:0px;
+        padding:0px;
+        box-sizing: border-box;
+      }
+
+       .button-element{
+         background-color: rgb(25,125,84);
+         border:none;
+         border-radius:4px;
+         padding:5px 9px;
+         color:white;
+       }
+
+       .button-container{
+        background-color: rgb(222,222,222);
+         height:100vh;
+         display:flex;
+         justify-content: center;
+         align-items: center;
+         gap:3px;
+       }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -31,9 +56,11 @@
 
         return (
             <>
-              <button onClick={clicked}>clicked {currentClickTimes} times</button>
-              <button onClick={reset}>Reset</button>
-              <button onClick={autoClick}>auto-click</button>
+              <div className="button-container">
+                  <button onClick={clicked} className="button-element">clicked {currentClickTimes} times</button>
+                  <button className="button-element" onClick={reset}>Reset</button>
+                  <button onClick={autoClick} className = "button-element">auto-click</button>
+              </div> 
             </>
         )
     }

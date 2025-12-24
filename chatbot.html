@@ -79,6 +79,19 @@
          overflow:scroll;
          scrollbar-width: none;
        }
+
+       .welcome-container{
+         display:flex;
+         width:100%;
+         justify-content: center;
+         color:rgb(174, 174, 169);
+         font-size: medium;
+         font-weight:lighter;
+       }
+
+       .loading-spinner{
+         width:30px;
+       }
     </style>
   </head>
   <body>
@@ -94,7 +107,7 @@
     
     function ChatInput({chatMessages,setChatMessages}){
     
-     const [inputText,setInputText] = React.useState('')
+     const [inputText,setInputText] = React.useState('');
 
       function saveInputText(event){
         setInputText(event.target.value);
@@ -102,6 +115,10 @@
 
      async function sendMessage(){
       
+      if(inputText==''){
+        return;
+      }
+
       const newChatMessages = [
             ...chatMessages,
             {
@@ -111,8 +128,19 @@
             }
           ];
 
+          setChatMessages(
+          [
+            ...newChatMessages,
+            {
+              message:<img src="loading-spinner.gif" className="loading-spinner"/>,
+              sender:'robot',
+              id:crypto.randomUUID()
+            }
+          ]
+        );
+    
        const response =await Chatbot.getResponseAsync(inputText);
-            setChatMessages(
+         setChatMessages(
           [
             ...newChatMessages,
             {
@@ -122,6 +150,7 @@
             }
           ]
         );
+        
         setInputText('');
       }
 
@@ -181,6 +210,12 @@
      
               return (                
               <>
+                    {
+                      chatMessages.length==0 
+                      && <div className = "welcome-container">
+                          Welcome to the chatbot project! Send a message using the textbox below
+                        </div>
+                    }         
                 <div className="chat-messages-container" ref={chatMessagesRef}> 
                   {chatMessages.map((chatMessage)=>{
                     return (
