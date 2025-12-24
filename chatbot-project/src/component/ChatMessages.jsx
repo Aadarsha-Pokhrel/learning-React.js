@@ -20,7 +20,7 @@ import './ChatMessages.css'
           <>
                 {
                   chatMessages.length==0 
-                  && <div className = "welcome-container">
+                   && <div className = "welcome-container">
                       Welcome to the chatbot project! Send a message using the textbox below
                     </div>
                 }         
@@ -28,7 +28,9 @@ import './ChatMessages.css'
               {chatMessages.map((chatMessage)=>{
                 return (
                   <ChatMessage message={chatMessage.message}
-                    sender = {chatMessage.sender} key={chatMessage.id} />
+                    sender = {chatMessage.sender}
+                    time={chatMessage.time}
+                     key={chatMessage.id} />
                 )
                 })}
               </div>  

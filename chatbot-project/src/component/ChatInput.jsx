@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {Chatbot} from 'supersimpledev'
 import LoadingSpinnerGif from '../assets/loadingSpinner.gif'
+import dayjs from 'dayjs'
 
 import './ChatInput.css'
 
@@ -12,16 +13,21 @@ import './ChatInput.css'
     setInputText(event.target.value);
   }
 
+  function clearChat(){
+    setChatMessages([]);
+    localStorage.setItem('messages',JSON.stringify([]));
+  }
+
   async function sendMessage(){
-  
   if(inputText==''){
     return;
   }
-
+  const timeNow = dayjs().valueOf();
   const newChatMessages = [
         ...chatMessages,
         {
           message:inputText,
+          time: `${dayjs(timeNow).format('h:mma')}`,
           sender:'user',
           id:crypto.randomUUID()
         }
@@ -44,6 +50,7 @@ import './ChatInput.css'
         ...newChatMessages,
         {
           message:response,
+          time: `${dayjs(timeNow).format('h:mma')}`,
           sender:'robot',
           id:crypto.randomUUID()
         }
@@ -74,6 +81,10 @@ import './ChatInput.css'
         <button 
           onClick={sendMessage}
           className = "send-button"> Send </button>
+       
+          <button 
+           className="clear-button"
+           onClick={clearChat}>Clear Chat</button>
       </div>  
     )
 }

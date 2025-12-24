@@ -4,7 +4,7 @@ import UserProfileImage from '../assets/user.png';
 import './ChatMessage.css'
 
 
-function ChatMessage({message , sender}){
+function ChatMessage({message,time,sender}){
 
     //destructuring the property  
         return (
@@ -13,7 +13,12 @@ function ChatMessage({message , sender}){
                 <img src={RobotProfileImage} className="chat-message-profile" />
             ) }
               <div className="chat-message-text">  
-              {message}
+                <p className='message-text'>
+                  {message}
+                </p>
+                <p className="time-stamp">
+                  {time}
+                </p>
               </div> 
               {sender ==='user' && (
                 <img src={UserProfileImage} className="chat-message-profile"/>

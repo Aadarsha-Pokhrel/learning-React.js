@@ -10,6 +10,17 @@
     cursor: pointer;
   }
 
+  .clear-button{
+    background-color: rgb(175, 85, 87);
+    border:none;
+    border-radius: 7px;
+    padding:12px 18px;
+    color:rgb(198, 196, 196);
+    margin-left:1vw;
+    font-size:17px;
+    cursor: pointer;
+  }
+
   .chat-input{
     padding: 12px 15px;
     border:1px solid grey;
