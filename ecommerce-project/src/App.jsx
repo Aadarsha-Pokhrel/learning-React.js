@@ -15,6 +15,8 @@ function App() {
        <Route path="/checkout" element={<CheckoutPage />} />
        <Route path="/orders" element={<OrderPage />} />
        <Route path="/tracking" element={<TrackingPage />} /> 
+
+       <Route path="*" element ={"404 Not found"} />
     </Routes>
       
    )
