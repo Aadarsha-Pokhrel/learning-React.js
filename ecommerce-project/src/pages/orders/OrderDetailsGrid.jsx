@@ -9,8 +9,7 @@ export function OrderDetailsGrid({order}){
     return (
         <>
             <div className="order-details-grid">
-                {order.products.map((orderProduct)=>{
-        
+                {order.products.map((orderProduct)=>{   
     
                 return(
                     <Fragment key={orderProduct.productId}>
@@ -36,7 +35,7 @@ export function OrderDetailsGrid({order}){
                 </div>
 
                 <div className="product-actions">
-                <Link to="/tracking">
+                <Link to={`/tracking/${order.id}/${orderProduct.productId}`}>
                     <button className="track-package-button button-secondary">
                     Track package
                     </button>
