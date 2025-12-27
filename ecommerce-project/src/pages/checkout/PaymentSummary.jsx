@@ -10,7 +10,6 @@ export function PaymentSummary({paymentSummary}){
                 </div>
             {paymentSummary && (
                 <>
-                   {console.log(paymentSummary)}
                     <div className="payment-summary-row">
                         <div>Items ({paymentSummary.totalItems}):</div>
                         <div className="payment-summary-money">{formatMoney(paymentSummary.productCostCents)}</div>
