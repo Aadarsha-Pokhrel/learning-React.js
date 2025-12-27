@@ -31,7 +31,6 @@ export function DeliveryOptions({deliveryOptions,cartItem,loadCart}){
                 }
 
                 return (
-                    <>
                         <div key={deliveryOption.id} onClick={ updateDeliveryOption } 
                         className="delivery-option">
 
@@ -47,7 +46,6 @@ export function DeliveryOptions({deliveryOptions,cartItem,loadCart}){
                                 </div>
                             </div>
                         </div>
-                    </>
                         )
              })}
             </div>     
