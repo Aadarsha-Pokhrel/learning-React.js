@@ -7,6 +7,7 @@ import { ProductGrid } from './ProductsGrid'
 
 
 export function HomePage({cart,loadCart}) {
+    window.axios = axios;
     const [products,setProducts] = useState([]);
 
     useEffect(()=>{
