@@ -1,8 +1,8 @@
 import {it,expect, describe,vi, beforeEach} from 'vitest'
 import {render,screen,within} from '@testing-library/react'
 import { MemoryRouter } from 'react-router';
-import userEvent from '@testing-library/user-event';
 import { HomePage } from './HomePage'
+import userEvent from '@testing-library/user-event';
 import axios from 'axios';
 
 vi.mock('axios');
@@ -49,7 +49,7 @@ describe('HomePage component',()=>{
       </MemoryRouter>
       )
 
-    const productContainers =  await  screen.findAllByTestId('product-container');
+    const productContainers =  await screen.findAllByTestId('product-container');
     
     expect(productContainers.length).toBe(2);
     
@@ -62,6 +62,23 @@ describe('HomePage component',()=>{
       within(productContainers[1])
       .getByText("Intermediate Size Basketball")
     ).toBeInTheDocument();
-   
+
+    const quantitySelector =screen.getAllByTestId('product-quantity-container');
+    expect(quantitySelector[0]).toHaveValue('1');
+
+    const user = userEvent.setup();
+    await user.selectOptions(quantitySelector[0],'3');
+
+     expect(quantitySelector[0]).toHaveValue('3');
+
+    const addToCartButton = screen.getAllByTestId('add-to-cart-button');
+    await user.click(addToCartButton[0]);
+
+      expect(axios.post).toHaveBeenCalledWith('/api/cart-items',{
+        productId : "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
+        quantity : 3
+      });
+
+       expect(loadCart).toHaveBeenCalled();
    })
 });
